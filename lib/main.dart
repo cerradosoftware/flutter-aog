@@ -1,6 +1,7 @@
 import 'package:aog/widgets/input.widget.dart';
 import 'package:aog/widgets/loading-button.widget.dart';
 import 'package:aog/widgets/logo.widget.dart';
+import 'package:aog/widgets/submit-form.widget.dart';
 import 'package:aog/widgets/success.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
@@ -23,9 +24,8 @@ class MyApp extends StatelessWidget {
 }
 
 class Home extends StatelessWidget {
-  var _gasolinaController = new MoneyMaskedTextController();
-  var _alcoolController = new MoneyMaskedTextController();
-
+  var gasolinaController = new MoneyMaskedTextController();
+  var alcoolController = new MoneyMaskedTextController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,18 +33,12 @@ class Home extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           Logo(),
-          Success(
-            reset: () {},
-            result: "Compensa Utizar X",
-          ),
-          Input(label: "Gasolina", controller: _gasolinaController),
-          Input(label: "Alcool", controller: _alcoolController),
-          LoadingButton(
-            text: "Calcular",
-            func: () {},
+          SubmitForm(
+            alcoolController: alcoolController,
+            gasolinaController: gasolinaController,
             busy: false,
-            invert: false,
-          ),
+            submitFunc: () {},
+          )
         ],
       ),
     );
